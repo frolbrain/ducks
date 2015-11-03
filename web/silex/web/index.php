@@ -5,9 +5,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 $app = new Silex\Application();
 $app['debug'] = true;
 
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
+$app->register(new Silex\Provider\TwigServiceProvider(), [
   'twig.path' => __DIR__.'/../views',
-));
+]);
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
@@ -41,6 +41,6 @@ $app->get('/', function () use ($app) {
 
 $app->get('/ptoduct/{id}', function ($id) use ($app){
   $sql = 'select * from `products` as p where p.id = :id';
-  $stmt = $app['db']->executeQery[$sql]
+  $stmt = $app['db']->executeQery[$sql];
 })->bind('show_product');
 $app->run();
