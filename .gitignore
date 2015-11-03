@@ -3,5 +3,6 @@
 /sql_hist.sql
 /host
 /.htaccess
+/web/silex/web/test.php
 /web/test.php
 /.idea
