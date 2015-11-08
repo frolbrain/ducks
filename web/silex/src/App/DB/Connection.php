@@ -5,7 +5,7 @@ class Connection
   protected $connection;
   public function __construct()
   {
-    $this->connection = $this->connect('root', '');
+    $this->connection = $this->connect('root', 'root');
   }
   public function getConnection()
   {
@@ -15,7 +15,7 @@ class Connection
   {
     try {
         $db = new \PDO(
-            'mysql:host=localhost;dbname=duck_store_new;charset=utf8', $username, $password
+            'mysql:host=my;dbname=duck_store;charset=utf8', $username, $password
         );
         $db->setAttribute(
             \PDO::ATTR_ERRMODE,

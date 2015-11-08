@@ -17,6 +17,6 @@ class AddToCart
       $inCart = 1;
     }
     setcookie('products['.$id.']', $inCart, time() + (3600 * 24 * 7));
-    header('Location: http://localhost/duck_store929/web/index.php');
+    header('Location: http://epic.li/test1.php');
   }
 }

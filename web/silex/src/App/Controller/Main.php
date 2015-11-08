@@ -15,9 +15,9 @@ class Main
   }
   protected function render($products)
   {
-    include_once __DIR__ . '/../../views/head.php';
-    include_once __DIR__ . '/../../views/header.php';
-    include_once __DIR__ . '/../../views/main/page.php';
-    include_once __DIR__ . '/../../views/footer.php';
+//    include_once __DIR__ . '/../../views/head.php';
+//    include_once __DIR__ . '/../../views/header.php';
+//    include_once __DIR__ . '/../../views/main/page.php';
+//    include_once __DIR__ . '/../../views/footer.php';
   }
 }
