@@ -14,4 +14,3 @@ php_value error_reporting -1
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
-123
