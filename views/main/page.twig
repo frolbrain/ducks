@@ -1,0 +1,26 @@
+{% extends 'layout.twig' %}
+
+{#main#}
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="banner"></div>
+            <div class="row clearfix">
+                {{ render(url('side_menu')) }}
+                <div class="column column9">
+                    {#single product#}
+                    {% block product %}
+                        {% for product in products %}
+                        <div class="item-block column column4">
+                          <a href='/{{ product.title }}' class="item">
+                            <img src="/img/{{ product.file_name }}" alt="уточка">
+                          </a>
+                          <a href="" class="btn-basket">В Корзину</a>
+                        </div>
+                        {% endfor %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
