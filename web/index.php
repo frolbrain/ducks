@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
-session_start();
 
 use App\DB;
 
@@ -9,6 +8,8 @@ $app['debug'] = true;
 
 $ProductRepository = new DB\ProductRepository($app);
 $CatalogRepository = new DB\CatalogRepository($app);
+
+session_start();
 
 require_once __DIR__.'/../src/App/Router/router.php';
 require_once __DIR__.'/../src/App/Config/init.php';
