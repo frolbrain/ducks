@@ -1,14 +1,20 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
+//require_once __DIR__.'/../src/autoload.php';
+
+use App\DB;
 
 $app = new Silex\Application();
 $app['debug'] = true;
+
+$ProductRepository = new DB\ProductRepository($app);
+
+require_once __DIR__.'/../src/App/Router/router.php';
 
 $app->register(new Silex\Provider\TwigServiceProvider(), [
   'twig.path' => __DIR__.'/../views',
 ]);
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
-
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_mysql',
@@ -21,41 +27,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 ));
 
         // Main Page //
-$app->get('/', function () use ($app) {
-//  products
-    $sql = 'SELECT * FROM  `products` limit 9';
-    $stmt = $app['db']->prepare($sql);
-    $stmt->execute();
-    $products = $stmt->fetchAll();
-    foreach ($products as $raw) {
-        $ptitle[] = "$raw[title]";
-        $pdescription[] = "$raw[description]";
-        $price[] = "$raw[price]";
-    };
 
-//  categories
-    $sql = 'SELECT * FROM `categories`;';
-    $stmt = $app['db']->prepare($sql);
-    $stmt->execute();
-    foreach ($stmt as $raw) {
-        $titles[] = "$raw[title]";
-    };
-
-//  image
-    $sql = 'SELECT `file_name` FROM `img` WHERE id=1;';
-    $stmt = $app['db']->prepare($sql);
-    $stmt->execute();
-    $imgname = $stmt->fetchColumn();
-
-    return $app['twig']->render('main_page.twig', [
-      'products' => $products,
-      'titles' => $titles,
-      'imgname' => $imgname,
-      'ptitle' => $ptitle,
-      'pdescription' => $pdescription,
-      'price' => $price,
-    ]);
-});
 
         // Catalog Page //
 $app->get('/catalog', function () use ($app) {

@@ -1,23 +1,27 @@
 <?php
 namespace App\Controller;
+
 use App\DB\ProductRepository;
+use Silex\Application;
 class Main
 {
   private $productRepository;
-  public function __construct(ProductRepository $productRepository)
+  private $app;
+
+  public function __construct(ProductRepository $productRepository, Application $app)
   {
     $this->productRepository = $productRepository;
+    $this->app = $app;
   }
   public function page()
   {
     $products = $this->productRepository->getProducts();
-    $this->render($products);
+    return $this->render($products);
   }
   protected function render($products)
   {
-//    include_once __DIR__ . '/../../views/head.php';
-//    include_once __DIR__ . '/../../views/header.php';
-//    include_once __DIR__ . '/../../views/main/page.php';
-//    include_once __DIR__ . '/../../views/footer.php';
+    return $this->app['twig']->render('/main/page.twig', [
+      'products' => $products,
+    ]);
   }
 }

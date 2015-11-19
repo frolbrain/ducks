@@ -1,29 +1,21 @@
 <?php
 namespace App\DB;
+
+use Silex\Application;
 class ProductRepository
 {
-  private $connection;
-  public function __construct(Connection $connection)
+  private $app;
+  public function __construct(Application $app)
   {
-    $this->connection = $connection->getConnection();
+      $this->app = $app;
   }
   public function getProducts()
   {
-      $stmt = $this->connection->prepare("SELECT * FROM `products` LIMIT 6");
+      $sql = 'SELECT * FROM  `products` AS p
+              INNER JOIN `img` AS i
+              ON i.`id` = p.`img_id` limit 9';
+      $stmt = $this->app['db']->prepare($sql);
       $stmt->execute();
-      return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-  }
-  function getProduct($id)
-  {
-      $stmt = $this->connection->prepare(
-          "SELECT p.id, p.title, p.description, p.price, c.title AS c_title
-              FROM `products` AS p
-              INNER JOIN `categories` AS c
-                  ON p.`category_id` = c.`id`
-              WHERE p.`id` = :id"
-      );
-      $stmt->bindParam(":id", $id);
-      $stmt->execute();
-      return $stmt->fetch(\PDO::FETCH_ASSOC);
+      return $stmt->fetchAll();
   }
 }

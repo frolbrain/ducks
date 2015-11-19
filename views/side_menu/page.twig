@@ -1,0 +1,12 @@
+{% extends 'layout.twig' %}
+
+{% block aside %}
+    <aside class="column column3">
+        <h2>Каталог</h2>
+        <ul>
+            {% for title in titles %}
+                <li><a href="/catalog/{{ title }}">{{ title }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+{% endblock %}
