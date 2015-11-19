@@ -18,4 +18,14 @@ class ProductRepository
       $stmt->execute();
       return $stmt->fetchAll();
   }
+  public function getProduct($id)
+  {
+      $sql = 'SELECT * FROM  `img` AS i
+              INNER JOIN `products` AS p
+              ON i.`id` = p.`img_id` WHERE p.`id` = :id';
+      $stmt = $this->app['db']->prepare($sql);
+      $stmt->bindParam(':id', $id);
+      $stmt->execute();
+      return $stmt->fetch();
+  }
 }

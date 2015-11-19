@@ -1,23 +1,31 @@
 <?php
 namespace App\Controller;
+
 use App\DB\CatalogRepository;
+use Silex\Application;
+
 class Catalog
 {
-  public function __construct(CatalogRepository $categoryRepository)
+  public function __construct(CatalogRepository $catalogRepository, Application $app)
   {
-    $this->categoryRepository = $categoryRepository;
+    $this->categoryRepository = $catalogRepository;
+    $this->app = $app;
   }
+
   public function page($categoryId)
   {
-    $products = $this->categoryRepository
-      ->getProductsForCategory($categoryId);
-    $this->render($products);
+    $products = $this->categoryRepository->getProductsForCategory($categoryId);
+    $category_name = $this->categoryRepository->getCategoryName($categoryId);
+    $this->render($products, $category_name, $categoryId);
+
+    return $this->render($products, $category_name, $categoryId);
   }
-  protected function render($products)
+  protected function render($products, $category_name, $categoryId)
   {
-    include_once __DIR__ . '/../../views/head.php';
-    include_once __DIR__ . '/../../views/header.php';
-    include_once __DIR__ . '/../../views/catalog/page.php';
-    include_once __DIR__ . '/../../views/footer.php';
+    return $this->app['twig']->render('catalog/page.twig', [
+		'products' => $products,
+		'category' => $category_name,
+		'categoryId' => $categoryId
+    ]);
   }
 }
