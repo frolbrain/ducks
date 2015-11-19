@@ -8,6 +8,7 @@ $app = new Silex\Application();
 $app['debug'] = true;
 
 $ProductRepository = new DB\ProductRepository($app);
+$CatalogRepository = new DB\CatalogRepository($app);
 
 require_once __DIR__.'/../src/App/Router/router.php';
 
