@@ -1,18 +1,19 @@
 <?php
 namespace App\DB;
+
+use Silex\Application;
 class CatalogRepository
 {
-  private $connection;
-  public function __construct(Connection $connection)
+  private $app;
+  public function __construct(Application $app)
   {
-    $this->connection = $connection->getConnection();
+      $this->app = $app;
   }
-  public function getProductsForCategory($categoryId)
+  public function getCategoryNames()
   {
-    $sql = "SELECT * FROM `products` WHERE `category_id` = :id";
-    $stmt = $this->connection->prepare($sql);
-    $stmt->bindParam(':id', $categoryId);
+    $sql = "SELECT * FROM `categories` ORDER BY `id`";
+    $stmt = $this->app['db']->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    return $stmt->fetchAll();
   }
 }

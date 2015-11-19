@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
-//require_once __DIR__.'/../src/autoload.php';
+session_start();
 
 use App\DB;
 
@@ -25,9 +25,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'charset'  => 'UTF8',
     ),
 ));
-
-        // Main Page //
-
 
         // Catalog Page //
 $app->get('/catalog', function () use ($app) {
