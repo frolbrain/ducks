@@ -24,20 +24,8 @@ class SideMenu
 
 	protected function render($category_names)
 	{
-		if (isset($_COOKIE['category'])) {
-			$category = $_COOKIE['category'];
-		} else {
-			$category = null;
-		}
-		if (isset($_COOKIE['now'])) {
-			$now = $_COOKIE['now'];
-		} else {
-			$now = null;
-		}
 	    return $this->app['twig']->render('side_menu/page.twig', [
 			'names' => $category_names,
-			'category' => $category,
-			'now' => $now
     	]);
 	}
 }

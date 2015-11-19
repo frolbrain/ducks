@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{#head#}
 {% block head %}
 	<head>
 		<meta charset="UTF-8">
@@ -11,7 +10,6 @@
 	</head>
 {% endblock %}
 <body>
-{#header#}
 {% block header %}
 	<header>
 		<div class="container clearfix">
@@ -29,21 +27,19 @@
 		</div>
 	</header>
 {% endblock %}
-
-    <main>
-        <div class="container">
-            <div class="banner"></div>
-            <div class="row clearfix">
-                {{ render(url('side_menu')) }}
-                <div class="column column9">
-                    {% block main %}{% endblock %}
-                </div>
+<main>
+    <div class="container">
+        <div class="banner"></div>
+        <div class="row clearfix">
+            <!-- боковое меню -->
+            {{ render(url('side_menu')) }}
+            <div class="column column9">
+                {% block content %}{% endblock %}
             </div>
         </div>
-    </main>
+    </div>
+</main>
 </body>
-
-{#footer#}
 {% block footer %}
 	<footer>
 		<div class="container">

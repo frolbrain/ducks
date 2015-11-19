@@ -7,6 +7,16 @@ $app->get('/', function () use($app, $ProductRepository) {
 	return $page->page();
 })->bind('main');
 
+$app->get('/side_menu', function () use($app, $CatalogRepository) {
+	$page = new \App\Controller\SideMenu($CatalogRepository, $app);
+	return $page->page();
+})->bind('side_menu');
+
+$app->get('/category/{id}', function($id) use($app, $CatalogRepository) {
+	$page = new \App\Controller\Catalog($CatalogRepository, $app);
+	return $page->page($id);
+})->bind('show_category');
+
 //$app->get('/', function () use ($app) {
 ////  products
 //    $sql = 'SELECT * FROM  `products` limit 9';
