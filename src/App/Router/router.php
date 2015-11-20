@@ -58,3 +58,8 @@ $app->get('/login/{state}', function ($state) use($app, $UserRepository) {
 	$page = new \App\Controller\Login($UserRepository, $app);
 	return $page->page($state);
 })->bind('login_get');
+
+$app->get('/order', function () use($app, $ProductRepository, $OrderRepository) {
+	$page = new \App\Controller\Order($ProductRepository, $OrderRepository, $app);
+	return $page->order();
+})->bind('order');
