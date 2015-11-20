@@ -27,3 +27,34 @@ $app->get('/add_to_cart/{product_id}', function ($product_id) use($app, $Product
     $cart->add($product_id);
 	return $app->redirect('/');
 })->bind('add_to_cart');
+
+$app->get('/cart/{in_cart}', function ($in_cart) use($app, $ProductRepository) {
+	$page = new \App\Controller\Cart($ProductRepository, $app);
+	return $page->page($in_cart);
+})->bind('cart');
+
+$app->get('/header', function () use($app, $ProductRepository) {
+	$cart = new \App\Controller\Cart($ProductRepository, $app);
+	$page = new \App\Controller\Header($cart, $app);
+	return $page->page();
+})->bind('header');
+
+$app->get('/info', function () use($app) {
+	$page = new \App\Controller\Info($app);
+	return $page->page();
+})->bind('info');
+
+$app->get('/delivery', function () use($app) {
+	$page = new \App\Controller\Delivery($app);
+	return $page->page();
+})->bind('delivery');
+
+$app->get('/contacts', function () use($app) {
+	$page = new \App\Controller\Contacts($app);
+	return $page->page();
+})->bind('contacts');
+
+$app->get('/login/{state}', function ($state) use($app, $UserRepository) {
+	$page = new \App\Controller\Login($UserRepository, $app);
+	return $page->page($state);
+})->bind('login_get');

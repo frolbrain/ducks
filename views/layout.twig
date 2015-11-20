@@ -10,23 +10,7 @@
 	</head>
 {% endblock %}
 <body>
-{% block header %}
-	<header>
-		<div class="container clearfix">
-			<!-- логотип -->
-			<a href="/" class="logo">Ducks</a>
-			<!-- меню -->
-			<nav>
-				<ul>
-					<li><a href="/company">О Компании</a></li>
-					<li><a href="/catalog">Каталог</a></li>
-					<li><a href="/dostavka">Доставка и оплата</a></li>
-					<li><a href="/contacts">Контакты</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-{% endblock %}
+{{ render(url('header')) }}
 <main>
     <div class="container">
         <div class="banner"></div>
