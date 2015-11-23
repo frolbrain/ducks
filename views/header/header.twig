@@ -10,7 +10,6 @@
 				<li><a href="{{ path('delivery') }}">Доставка и оплата</a></li>
 				<li><a href="{{ path('contacts') }}">Контакты</a></li>
 				<li><a href="{{ path('cart', {in_cart: in_cart}) }}">{% if in_cart == 0 %}Корзина{% else %}В корзине: {{ in_cart }}{% endif %}</a></li>
-				</li>
 			</ul>
 		</nav>
 	</div>

@@ -9,6 +9,7 @@ $app['debug'] = true;
 $ProductRepository = new DB\ProductRepository($app);
 $CatalogRepository = new DB\CatalogRepository($app);
 $UserRepository = new DB\UserRepository($app);
+$OrderRepository = new DB\OrderRepository($app);
 
 session_start();
 

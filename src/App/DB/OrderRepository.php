@@ -2,9 +2,10 @@
 
 namespace App\DB;
 
+use Silex\Application;
 class OrderRepository
 {
-	private $connection;
+	private $app;
 
 	public function __construct(Application $app)
 	{
